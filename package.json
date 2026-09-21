@@ -1,6 +1,6 @@
 {
   "name": "dsh-chatgpt-oauth",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "ChatGPT account OAuth login and Codex usage display for DeepSeek Harness.",
   "type": "module",
   "main": "lib/index.js",
@@ -15,6 +15,7 @@
   "files": [
     "lib/",
     "docs/",
+    "screenshots.json",
     "cordis.patch.yml",
     "README.md",
     "LICENSE"

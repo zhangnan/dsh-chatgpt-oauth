@@ -20,11 +20,13 @@
 
 要求：Node.js 22.19+、已安装 DSH，并使用带“模型设置”页面的 `web` profile。本插件在 DSH `0.1.6-alpha.2` 上验证过。
 
-目前可从 GitHub Release 安装：
+从 npm 安装：
 
 ```sh
-dsh plugin --profile web add -w 'github:zhangnan/dsh-chatgpt-oauth#v0.1.0'
+dsh plugin --profile web add -w dsh-chatgpt-oauth
 ```
+
+也可以从 [GitHub Release](https://github.com/zhangnan/dsh-chatgpt-oauth/releases) 安装：`dsh plugin --profile web add -w 'github:zhangnan/dsh-chatgpt-oauth#v0.1.1'`。
 
 安装后重启 `dsh web`，打开“设置 → 模型 → ChatGPT”。此包是 DSH Profile Bundle：安装时自动添加 `authorization` 服务与本插件，无需手工修改 `cordis.patch.yml`。
 
