@@ -1,0 +1,5 @@
+- insert:
+    - id: authorization
+      name: '@deepseek-ai/dsh-authorization'
+    - id: dsh-chatgpt-oauth
+      name: dsh-chatgpt-oauth
