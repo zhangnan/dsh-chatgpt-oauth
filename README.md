@@ -4,6 +4,10 @@
 
 > 非 OpenAI 或 DeepSeek 官方插件。使用的是 ChatGPT 账号的 Codex OAuth 授权，不是 OpenAI API Key；可用模型及限额由你的账号和服务端决定。
 
+## 效果图
+
+![DSH 模型设置中的 ChatGPT 账号状态与 Codex 用量](docs/model-settings-usage.png)
+
 ## 功能
 
 - 在“设置 → 模型 → ChatGPT（openai-codex）”详情卡片中进行浏览器或设备码登录，无额外设置标签。
