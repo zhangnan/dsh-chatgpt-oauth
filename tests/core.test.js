@@ -44,6 +44,29 @@ test('routeState rejects apiKeyEnv because it overrides stored OAuth', () => {
   assert.equal(routeState({ providers: { 'openai-codex': { apiKeyEnv: 'OPENAI_CODEX_API_KEY' } } }).compatible, false)
 })
 
+test('routeState rejects model compat switches owned by the pi-ai catalog', () => {
+  const state = routeState({ providers: { 'openai-codex': {
+    models: [{ id: 'gpt-6-sol', compat: { supportsOpenAIGrammarTools: true } }],
+  } } })
+  assert.equal(state.compatible, false)
+  assert.match(state.issue, /gpt-6-sol.*supportsOpenAIGrammarTools/)
+})
+
+test('routeState rejects route-level catalog compat but accepts model IDs from the catalog', () => {
+  const invalid = routeState({ providers: { 'openai-codex': {
+    compat: { supportsToolSearch: true },
+    models: [{ id: 'gpt-6-sol' }, { id: 'gpt-6-luna' }],
+  } } })
+  assert.equal(invalid.compatible, false)
+  assert.match(invalid.issue, /supportsToolSearch/)
+
+  const valid = routeState({ providers: { 'openai-codex': {
+    models: [{ id: 'gpt-6-sol' }, { id: 'gpt-6-luna' }],
+  } } })
+  assert.equal(valid.compatible, true)
+  assert.equal(valid.issue, undefined)
+})
+
 test('parseCodexUsage follows pi-web Codex window and credits semantics', () => {
   const report = parseCodexUsage({
     rate_limit: {

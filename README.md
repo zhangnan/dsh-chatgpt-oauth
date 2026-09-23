@@ -26,7 +26,7 @@
 dsh plugin --profile web add -w dsh-chatgpt-oauth
 ```
 
-也可以从 [GitHub Release](https://github.com/zhangnan/dsh-chatgpt-oauth/releases) 安装：`dsh plugin --profile web add -w 'github:zhangnan/dsh-chatgpt-oauth#v0.1.1'`。
+也可以从 [GitHub Release](https://github.com/zhangnan/dsh-chatgpt-oauth/releases) 安装：`dsh plugin --profile web add -w 'github:zhangnan/dsh-chatgpt-oauth#v0.1.2'`。
 
 安装后重启 `dsh web`，打开“设置 → 模型 → ChatGPT”。此包是 DSH Profile Bundle：安装时自动添加 `authorization` 服务与本插件，无需手工修改 `cordis.patch.yml`。
 
@@ -39,6 +39,8 @@ dsh plugin --profile web add -w dsh-chatgpt-oauth
 3. 登录完成后，卡片会读取用量；点击“刷新”可手动重新查询。退出账号只删除本插件使用的 DSH 凭据记录。
 
 如果账号授权成功但模型不可用，先检查 `openai-codex` 路由是否配置了 `apiKeyEnv`：该字段会覆盖账号 OAuth 凭据，需要移除。端口 1455 已被其他应用占用时，关闭其他登录流程后重试。
+
+`gpt-6-sol` 和 `gpt-6-luna` 已在新版 pi-ai 的 `openai-codex` 内置模型目录中。要在 DSH 模型设置里显式列出它们，只写 `id` 即可；不要在路由或模型的 `compat` 中写 `supportsOpenAIGrammarTools`、`supportsAdditionalTools`、`supportsToolSearch`，这些能力由目录提供，DSH 会拒绝重复声明。若 `models` 已存在，保留原有模型条目后追加两个 ID，因为该列表会替换整个可用目录。
 
 ## 安全与限制
 
